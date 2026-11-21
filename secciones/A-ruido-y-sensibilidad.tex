@@ -1,0 +1,188 @@
+% !TeX root = ../main.tex
+\chapter{Modelo de ruido y desempe\~no te\'orico del receptor}
+\label{ap:ruido}
+
+Este ap\'endice re\'une el modelo de ruido del receptor preamplificado, el
+requisito de OSNR que impone el umbral HD-FEC. El \cref{cap:enlace} toma estos resultados como datos para el balance de potencia.
+
+
+\section{Modelo de ruido y OSNR}
+\label{sec:enl-ruido}
+
+La fuente de ruido dominante del enlace es la emisi\'on espont\'anea
+amplificada del EDFA del receptor. El modelo est\'a
+desarrollado en la \cref{sec:canal-ase}: densidad espectral por modo de
+polarizaci\'on $S_{\mathrm{pol}} = \nsp h\nu (G-1) = \tfrac12 (FG-1)h\nu$,
+inyectada en cada polarizaci\'on, y OSNR definida sobre el total en
+$\Bref = \SI{12.5}{\giga\hertz}$.
+
+\begin{puntos}
+  \item Consistencia del factor de emisi\'on espont\'anea:
+En la simulaci\'on no se toma $\nsp$ como par\'ametro sino que se usa directamente la f\'ormula
+$S_{\mathrm{pol}} = \tfrac12(FG-1)h\nu$. Invirtiendo la
+definici\'on de figura de ruido,
+\begin{equation}
+  F = \frac{1 + 2\nsp(G-1)}{G}
+  \quad\Longrightarrow\quad
+  \nsp = \frac{FG - 1}{2\,(G-1)},
+  \label{eq:nsp-exacto}
+\end{equation}
+y con $G = \SI{25}{\dB}$ y $F = \SI{4.5}{\dB}$ resulta $\nsp = \num{1.4121}$.
+Utilizando la aproximaci\'on de ganancia alta se obtiene: $\nsp \simeq F/2 = \num{1.4092}$. Es decir,
+a \SI{25}{\dB} de ganancia las dos expresiones son equivalentes.
+
+El factor de emisi\'on espont\'anea
+es $\nsp = N_2/(N_2 - N_1)$, con $N_2$ y $N_1$ las poblaciones de los niveles
+superior e inferior del medio activo, de modo que siempre se cumple $\nsp \ge 1$. A su vez, la igualdad
+corresponde a inversi\'on de poblaci\'on completa, resultante en
+$F = \SI{3.01}{\dB}$, es decir, el l\'imite cu\'antico de un amplificador \'optico. Los
+\SI{4.5}{\dB} especificados est\'an entonces
+\begin{equation}
+  F - \SI{3.01}{\dB} = 10\log_{10}\nsp = \SI{1.50}{\dB}
+  \label{eq:exceso-nf}
+\end{equation}
+por encima del l\'imite, que es lo t\'ipico de un EDFA comercial.
+El modelo de
+ruido no tiene par\'ametros libres. Fijados $G$ y $F$, la densidad de ASE queda
+determinada. 
+
+  \item En la simulaci\'on solo se tiene en cuenta el ruido ASE del EDFA del receptor,
+ despreciando al ruido shot, t\'ermico y ASE del booster del transmisor.
+
+En un receptor coherente todos los t\'erminos de ruido aparecen en el
+fotodetector multiplicados por el oscilador local, as\'i que la comparaci\'on
+correcta es entre densidades espectrales de corriente a la salida de un
+fotodiodo. Con $R$ la responsividad, $P_{LO}$ la potencia de oscilador local
+que llega a ese fotodiodo, $S_{\mathrm{pol}}$ la densidad de ASE
+co-polarizado y $F_{\mathrm{TIA}}$ la figura de ruido el\'ectrica del amplificador de
+transimpedancia, el batido ASE--LO, el ruido de shot y el ruido t\'ermico
+valen
+\begin{equation}
+  S_{\mathrm{ASE\text{-}LO}} = 2R^{2}P_{LO}S_{\mathrm{pol}},
+  \qquad
+  S_{\mathrm{shot}} = 2qRP_{LO},
+  \qquad
+  S_{\mathrm{term}} = \frac{4k_BT F_{\mathrm{TIA}}}{R_L}.
+  \label{eq:ruidos}
+\end{equation}
+
+\begin{comment}
+Conviene no confundir $F_{\mathrm{TIA}}$ con la $F$ del EDFA. La del EDFA es una figura de
+ruido \'optica, mide cu\'anto degrada el amplificador la relaci\'on se\~nal a
+ruido del campo \'optico y tiene un piso cu\'antico de \SI{3.01}{\dB}. $F_{\mathrm{TIA}}$
+es una figura de ruido el\'ectrica: el factor por el que el amplificador de
+transimpedancia multiplica al ruido t\'ermico de la resistencia de carga, sin
+m\'as piso que la unidad, y vale t\'ipicamente entre \SI{2}{\dB} y
+\SI{4}{\dB} en un TIA de banda ancha.
+\end{comment}
+
+El cociente entre los dos primeros t\'erminos no depende de la potencia del
+oscilador local:
+\begin{equation}
+  \frac{S_{\mathrm{shot}}}{S_{\mathrm{ASE\text{-}LO}}}
+    = \frac{q}{R\,S_{\mathrm{pol}}}
+    = \num{2.81e-3} \equiv \SI{-25.5}{\dB}.
+  \label{eq:shot-vs-ase}
+\end{equation}
+Aumentar la ganancia aumenta $S_{\mathrm{pol}}$ y vuelve despreciable al ruido
+shot. Para calcular la relaci\'on con el ruido t\'ermico hay que
+definir valores. Con $P_{LO} = \SI{10}{\dBm}$ repartidos entre dos
+polarizaciones y las cuatro salidas del h\'ibrido, se tienen \SI{1.25}{\milli\watt} por
+fotodiodo, y con $R_L = \SI{50}{\ohm}$, $T = \SI{300}{\kelvin}$ y
+$F_{\mathrm{TIA}} = \SI{3}{\dB}$ su densidad espectral termina \SI{23.3}{\dB} por debajo del batido
+ASE--LO. Sumando los ruidos t\'ermico y shot, el ruido total sube un factor \num{1.0075}, es decir
+\SI{0.03}{\dB}.
+
+
+Tambi\'en es despreciado el ASE del booster de transmisi\'on. Este ruido se genera
+antes del enlace, de modo que llega al receptor atenuado por los
+\SI{73.40}{\dB} de p\'erdida de trayecto, y el pre-amplificador lo vuelve a
+amplificar. Sin embargo, antes de descartarlo es necesario verificar si este ruido re-amplificado es comparable con el ASE del preamplificador. Con $G_b$ y $F_b$ la ganancia y
+la figura de ruido del booster, y $L$ la p\'erdida del enlace,
+
+\begin{equation}
+  \frac{S_{\mathrm{booster}}}{S_{\mathrm{pol}}}
+    = \frac{\tfrac12\,(F_bG_b-1)\,h\nu\;L\;G}{\tfrac12\,(FG-1)\,h\nu}
+    \;\simeq\; \frac{F_b G_b}{F}\,L .
+  \label{eq:ase-booster}
+\end{equation}
+
+Con $G_b = \SI{35}{\dB}$ y $F_b = \SI{5}{\dB}$, el
+ASE del booster comienza $F_bG_b/F = \SI{35.5}{\dB}$ por encima de la densidad del EDFA del receptor,
+porque el booster tiene \SI{10}{\dB} m\'as de ganancia. Sin embargo, luego de pasar por el canal y amplificarse, queda \SI{37.9}{\dB} por
+debajo, o \SI{0.001}{\dB} de contribuci\'on.
+
+
+Todo esto vale para el receptor preamplificado del enlace. El
+$S_{\mathrm{pol}}$ de la \cref{eq:ruidos} crece con la ganancia del
+pre-amplificador. Por lo tanto el propio EDFA termina generando el ruido que hace despreciable a los dem\'as. Alcanza con \SI{2.6}{\dB} de ganancia para que
+el batido ASE--LO supere al t\'ermico, y a \SI{25}{\dB} ya le saca
+\SI{23}{\dB}. En el esquema experimental del \cref{cap:experimental} no se tiene el
+pre-amplificador, por lo que los ruidos dominantes son tanto el shot como el t\'ermico, dependiendo
+de la potencia del LO.
+
+ La \cref{tab:ruidos} resume los resultados.
+\end{puntos}
+
+\begin{table}[htbp]
+  \centering
+
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{lccl}
+    \toprule
+    Fuente & Densidad relativa & Penalidad & En el modelo \\
+    \midrule
+    Batido se\~nal--ASE del pre-amplificador & referencia      & ---                & s\'i \\
+    Batido ASE--ASE                          & ---             & ---                & s\'i \\
+    Ruido t\'ermico del TIA                  & \SI{-23.3}{\dB} & \SI{0.020}{\dB}    & no \\
+    Ruido de disparo                         & \SI{-25.5}{\dB} & \SI{0.012}{\dB}    & no \\
+    ASE del booster de transmisi\'on         & \SI{-37.9}{\dB} & \SI{0.001}{\dB}    & no \\
+    \bottomrule
+  \end{tabular}
+  \caption[Contribuciones de ruido al receptor]{%
+    Peso de cada fuente de ruido en el punto de operaci\'on. La segunda columna
+    es la densidad espectral de la fuente respecto de la del batido
+    se\~nal--ASE del pre-amplificador, que se toma como referencia. La tercera columna se refiere a
+    cu\'anto subir\'ia el ruido total si se agregara ese t\'ermino al modelo.}
+  \label{tab:ruidos}
+\end{table}
+
+
+
+\section{Desempe\~no te\'orico}
+\label{sec:enl-teorico}
+
+El umbral HD-FEC fija el requisito de OSNR. Utilizando las
+conversiones desarrolladas en la \cref{sec:coh-metricas}, se obtiene la
+\cref{tab:cadena-teorica}.
+
+\begin{table}[htbp]
+  \centering
+
+  \begin{tabular}{llc}
+    \toprule
+    Magnitud & Origen & Valor \\
+    \midrule
+    $\BER$ objetivo & umbral HD-FEC       & \num{3.8e-3} \\
+    $\EbNo$         & \cref{eq:ber-qpsk}  & \SI{5.52}{\dB} \\
+    $\EsNo$         & $E_s = 2E_b$        & \SI{8.53}{\dB} \\
+    $\OSNR$         & \cref{eq:osnr-esno} & \SI{12.61}{\dB} \\
+    \bottomrule
+  \end{tabular}
+  \caption[Del umbral HD-FEC al requisito de OSNR]{%
+    Conversiones desde el umbral de la correcci\'on de errores hasta
+    el requisito de OSNR, a \SI{32}{\giga\baud} con
+    $\Bref = \SI{12.5}{\giga\hertz}$.}
+  \label{tab:cadena-teorica}
+\end{table}
+
+La misma cadena con una sola polarizaci\'on resulta en \SI{9.60}{\dB}, tres dB menos.
+La diferencia sale de que multiplexar en polarizaci\'on obliga a duplicar la
+potencia de se\~nal y deja la de ruido igual, as\'i que duplicar la tasa
+binaria por esta v\'ia cuesta \SI{3.01}{\dB} de OSNR.
+
+Los \SI{12.61}{\dB} son el desempe\~no de un receptor ideal. Lo que separa este
+valor de OSNR con el que la simulaci\'on completa es
+la penalidad de implementaci\'on, que se mide en la
+\cref{sec:enl-verificacion}.

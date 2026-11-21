@@ -1,0 +1,194 @@
+%% =======================================================================
+%  PREAMBULO — paquetes, estilo y macros
+% =======================================================================
+
+%% --- Idioma y codificacion ---------------------------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noquoting,es-tabla]{babel}
+\usepackage{lmodern}
+\usepackage{microtype}
+
+%% --- Matematica --------------------------------------------------------
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{bm}
+\usepackage{siunitx}
+\sisetup{
+  output-decimal-marker = {,},
+  per-mode              = symbol,
+  range-units           = single,
+  detect-weight         = true
+}
+\DeclareSIUnit\baud{Bd}
+\DeclareSIUnit\dBm{dBm}
+\DeclareSIUnit\dB{dB}
+\DeclareSIUnit\ppm{ppm}
+
+%% --- Figuras y tablas --------------------------------------------------
+\usepackage{graphicx}
+\graphicspath{{figuras/}}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{float}
+\usepackage[font=small,labelfont=bf,width=0.9\textwidth,
+            justification=centering]{caption}
+% Los epigrafes de las tablas van debajo de la tabla.
+\captionsetup[table]{position=bottom}
+\usepackage{subcaption}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning,calc,fit,backgrounds}
+
+
+%% --- Pagina ------------------------------------------------------------
+\usepackage[a4paper,inner=3cm,outer=2.5cm,top=2.5cm,bottom=2.5cm]{geometry}
+% Parrafos sin sangria, separados por un espacio vertical.
+\usepackage{parskip}
+% Sin estirar el texto para llenar la pagina: el blanco sobrante queda
+% al final y el interlineado no cambia de una pagina a otra.
+\raggedbottom
+\usepackage{fancyhdr}
+\setlength{\headheight}{14.5pt}
+\addtolength{\topmargin}{-2pt}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\nouppercase{\leftmark}}
+\fancyhead[LO]{\nouppercase{\rightmark}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% Las paginas en blanco que \cleardoublepage mete para que cada capitulo
+% abra en impar salian con el encabezado y el numero de pagina del capitulo
+% anterior. Esto las deja realmente en blanco. Es la redefinicion estandar
+% de book.cls con un \thispagestyle{empty} agregado.
+\makeatletter
+\renewcommand{\cleardoublepage}{%
+  \clearpage
+  \if@twoside
+    \ifodd\c@page\else
+      \null
+      \thispagestyle{empty}%
+      \newpage
+      \if@twocolumn\null\newpage\fi
+    \fi
+  \fi}
+\makeatother
+
+%% --- Titulo de capitulo con el numero enmarcado -------------------------
+%  Reproduce el estilo de la tesis de referencia. Si no te gusta,
+%  comentar este bloque entero y queda el estilo estandar de book.
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\normalfont\Large\filleft}
+  {\raisebox{0.6ex}{\normalsize\scshape \chaptertitlename}\hspace{0.4em}%
+   \fbox{\parbox[c][2.1em][c]{2.1em}{\centering\Huge\thechapter}}}
+  {0.6em}
+  {\vspace{0.4em}\huge\filright}
+\titlespacing*{\chapter}{0pt}{20pt}{40pt}
+
+%  \paragraph viene en estilo corrido, con el texto pegado al titulo. Esto lo
+%  pasa a bloque, con el titulo en su propio renglon. Tiene que ir despues del
+%  \usepackage{titlesec} de arriba, porque de ahi sale \titleformat.
+\titleformat{\paragraph}[block]
+  {\normalfont\bfseries}{}{0pt}{}
+\titlespacing*{\paragraph}{0pt}{1.5ex plus .5ex minus .2ex}{0.5ex}
+
+%% --- Referencias cruzadas ----------------------------------------------
+\usepackage{hyperref}
+% Sin esto las URLs largas de la bibliografia entran como una caja
+% indivisible. TeX las manda solas a su renglon y estira los espacios de las
+% lineas anteriores para justificarlas. xurl deja cortarlas en cualquier
+% punto y los huecos desaparecen.
+\usepackage{xurl}
+\hypersetup{
+  colorlinks = true,
+  linkcolor  = black,
+  citecolor  = black,
+  urlcolor   = blue!60!black,
+  pdftitle   = {Receptor optico coherente DP-QPSK para enlaces LEO-GEO},
+  pdfauthor  = {Ezequiel Brandan}
+}
+\usepackage[nameinlink,spanish]{cleveref}
+% babel con es-tabla rotula los epigrafes como "Tabla", asi que cleveref
+% tiene que decir lo mismo. Con el "cuadro" que trae por defecto salian
+% referencias como "la cuadro 7.10", que ademas no concuerda en genero.
+\crefname{table}{Tabla}{Tablas}
+\Crefname{table}{Tabla}{Tablas}
+\crefname{figure}{Figura}{Figuras}
+\Crefname{figure}{Figura}{Figuras}
+\crefname{equation}{Ecuaci\'on}{Ecuaciones}
+\Crefname{equation}{Ecuaci\'on}{Ecuaciones}
+\crefname{section}{Secci\'on}{Secciones}
+\Crefname{section}{Secci\'on}{Secciones}
+\crefname{subsection}{Secci\'on}{Secciones}
+\Crefname{subsection}{Secci\'on}{Secciones}
+
+% Vineta redonda en las listas (babel-spanish pone un guion).
+\AtBeginDocument{\renewcommand{\labelitemi}{\textbullet}}
+
+%% --- Utilidades de escritura -------------------------------------------
+\usepackage{xcolor}
+% Bloques comentados: \begin{comment} ... \end{comment}. Cada etiqueta tiene
+% que ir sola en su linea y los bloques no se pueden anidar. El entorno lo da
+% verbatim, que es parte de la base de LaTeX; el paquete comment hace lo mismo
+% pero hay que instalarlo aparte.
+\usepackage{verbatim}
+% Antes de entregar: \newcommand{\todo}[1]{} y desaparecen todas.
+\newcommand{\todo}[1]{\textcolor{red}{\textbf{[TODO: #1]}}}
+\newcommand{\rev}[1]{\textcolor{blue}{#1}}
+
+%% --- Lista de puntos sin sangria ----------------------------------------
+% La vineta queda al mismo nivel que el margen del texto que la rodea, y el
+% cuerpo del punto cuelga de ella. El \makelabel redefinido es lo que alinea
+% la vineta a la izquierda de su caja: sin eso list la pega a la derecha y el
+% punto arranca corrido. No hace falta enumitem.
+\newenvironment{puntos}{%
+  \begin{list}{$\bullet$}{%
+    \setlength{\leftmargin}{1.5em}%
+    \setlength{\labelwidth}{1em}%
+    \setlength{\labelsep}{0.5em}%
+    \setlength{\itemindent}{0pt}%
+    \setlength{\listparindent}{0pt}%
+    \setlength{\topsep}{\medskipamount}%
+    \setlength{\parsep}{\parskip}%
+    \setlength{\itemsep}{\medskipamount}%
+    \renewcommand{\makelabel}[1]{##1\hfil}%
+  }%
+}{%
+  \end{list}%
+}
+
+%% --- Entorno para la lista de acronimos ---------------------------------
+\newenvironment{listaacronimos}
+  {\begin{list}{}{%
+     \setlength{\labelwidth}{2.4cm}
+     \setlength{\leftmargin}{3.2cm}
+     \setlength{\labelsep}{0.8cm}
+     \setlength{\itemsep}{0.15em}
+     \renewcommand{\makelabel}[1]{\textbf{##1}\hfil}}}
+  {\end{list}}
+
+%% =======================================================================
+%  MACROS DEL TRABAJO
+% =======================================================================
+\newcommand{\Rs}{R_{s}}
+\newcommand{\Ts}{T_{s}}
+\newcommand{\Bref}{B_{\mathrm{ref}}}
+\newcommand{\OSNR}{\mathrm{OSNR}}
+\newcommand{\EVM}{\mathrm{EVM}}
+\newcommand{\BER}{\mathrm{BER}}
+\newcommand{\EbNo}{E_{b}/N_{0}}
+\newcommand{\EsNo}{E_{s}/N_{0}}
+\newcommand{\Pcw}{P_{\mathrm{cw}}}
+\newcommand{\nsp}{n_{\mathrm{sp}}}
+\newcommand{\Efield}{\mathbf{E}}
+\newcommand{\Jones}[1]{\mathbf{#1}}
+\newcommand{\fdot}{\dot{f}}
+\newcommand{\dnu}{\Delta\nu}
+\newcommand{\Df}{\Delta f}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\E}[1]{\mathbb{E}\!\left[#1\right]}
+% Etiquetas de las configuraciones de deterioros del capitulo de tolerancias
+\newcommand{\Cfg}[1]{\mbox{C#1}}
+\DeclareMathOperator{\sinc}{sinc}
+\DeclareMathOperator{\Qfun}{Q}

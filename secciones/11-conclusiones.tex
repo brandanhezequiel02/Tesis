@@ -1,0 +1,111 @@
+% !TeX root = ../main.tex
+%% =======================================================================
+%  CAPITULO 9 — CONCLUSIONES
+
+\chapter{Conclusiones}
+\label{cap:conclusiones}
+
+El receptor DP-QPSK de \SI{128}{\giga\bit\per\second} desarrollado en este
+trabajo compensa el offset Doppler y su deriva, la rotaci\'on del estado de
+polarizaci\'on y el ruido de los l\'aseres del enlace LEO--GEO. Frente a cada
+uno de esos deterioros del canal queda margen sobre el valor f\'isico. Tambi\'en
+se desarroll\'o el balance de potencias, llegando a la conclusi\'on de que es posible
+con un sistema de apuntamiento adecuado.
+
+\section{Conclusiones generales}
+\label{sec:con-generales}
+
+Los cinco objetivos espec\'ificos planteados en la \cref{sec:intro-objetivos}
+se cumplieron:
+
+\paragraph{Modelo de la cadena}
+Se model\'o la cadena completa, desde el transmisor hasta la digitalizaci\'on,
+pasando por el canal satelital, con los par\'ametros de los equipos del
+laboratorio. Con todo el procesamiento incluido, la simulaci\'on cruza el
+umbral HD-FEC a medio dB del l\'imite te\'orico AWGN.
+
+\paragraph{Procesamiento digital}
+La cadena de siete bloques del \cref{cap:dsp} compensa todas las degradaciones
+que impone el enlace. El l\'imite de captura de frecuencia es fijado por
+el plegado de Nyquist del tono de cuarta potencia, no por el ruido, resultado en $\Rs/4$. Los tres lazos
+quedaron caracterizados, cada uno con su ancho de banda medido. El paso de
+adaptaci\'on del ecualizador se eligi\'o como el mejor compromiso entre
+tolerancia al estado de polarizaci\'on y ruido de gradiente.
+
+\paragraph{Balance de potencia}
+A la distancia del enlace, en el peor instante del pase, la OSNR que llega al
+receptor queda ligada de forma directa a la potencia del l\'aser transmisor. El
+umbral operativo, que suma los deterioros de vuelo al receptor simulado, se
+alcanza con un l\'aser comercial y un amplificador de potencia trabajando por
+debajo de su saturaci\'on. Pero el margen que queda al llevar ese
+amplificador al m\'aximo punto de trabajo se consume por completo en el acoplamiento a fibra monomodo
+y en el margen de sistema. El enlace cierra s\'olo si el apuntamiento alcanza
+el orden del microradi\'an.
+
+\paragraph{Tolerancias}
+La \cref{tab:tol-final} resume el resultado. El receptor tiene margen frente a
+todos los deterioros que impone el canal. El m\'as ajustado de ellos es el
+offset Doppler. El resto, que son la tasa de chirp, la deriva del estado de
+polarizaci\'on, el ancho de l\'inea de los l\'aseres y el error de reloj,
+quedan \'ordenes de magnitud por encima de lo que el enlace pide.
+
+El \'unico margen estrecho proviene del hardware del receptor. El skew tolerado
+entre las ramas del front-end queda apenas por debajo de la especificaci\'on
+del componente. Es adem\'as el t\'ermino que m\'as pesa en el presupuesto de
+vuelo. Sin embargo, este deterioro es calibrable. Haciendo esta calibraci\'on en la integraci\'on
+se convierte la penalidad de vuelo en algo despreciable.
+
+Los l\'imites de offset y de chirp no cambian con la OSNR en ninguno de los
+valores barridos, as\'i que son propiedades de los algoritmos y no se pueden
+mejorar con potencia \'optica.
+
+\paragraph{Validaci\'on experimental}
+El mismo DSP, sin ninguna modificaci\'on, recupera la constelaci\'on
+sobre capturas de laboratorio en las tres tasas medidas, incluida la de
+dise\~no. El offset Doppler emulado se compensa hasta $\Rs/4$ en las tres, lo
+que confirma el mecanismo de quiebre sobre se\~nales reales. La limitaci\'on del laboratorio
+est\'a en el osciloscopio, que a la tasa de dise\~no no llega a dos muestras
+por s\'imbolo.
+
+Los barridos de potencia fijan la sensibilidad del conjunto en cada tasa. Del
+lado del oscilador local muestran que el desempe\~no deja de mejorar a partir
+de cierta potencia, como corresponde a un receptor coherente que pasa de estar
+limitado por el ruido t\'ermico a estarlo por el shot del propio oscilador.
+Dentro del rango enganchado la BER medida crece con el valor absoluto del
+offset. La simulaci\'on reproduce esta pendiente a medida que se disminuye el
+ancho de banda del front-end. Por tanto, la degradaci\'on viene del equipo utilizado en el laboratorio y no del DSP.
+Con los anchos de banda de las hojas de datos, este efecto no limita el rango de Doppler del
+enlace.
+
+\section{Aportes del trabajo}
+\label{sec:con-aportes}
+
+\begin{itemize}
+  \item Un simulador completo de la cadena DP-QPSK LEO--GEO, construido sobre
+        los par\'ametros del hardware de laboratorio y validado contra el
+        l\'imite te\'orico AWGN.
+  \item Un DSP de siete bloques que funciona tanto sobre se\~nales simuladas como
+        sobre capturas reales, en tres tasas de s\'imbolo.
+  \item La explicaci\'on del l\'imite de captura Doppler como el rango del
+        estimador de cuarta potencia, $\Rs/4$, verificada en simulaci\'on y en
+        laboratorio.
+  \item Un balance de potencia a la distancia del enlace, separado en l\'imite
+        te\'orico, penalidad de implementaci\'on y deterioros de vuelo.
+\end{itemize}
+
+\section{Trabajo futuro}
+\label{sec:con-futuro}
+
+\begin{itemize}
+  \item Si un enlace futuro necesita m\'as que $\Rs/4$ de captura, subir las
+        muestras por s\'imbolo o reemplazar la
+        cuarta potencia por otro algoritmo.
+  \item Calibrar el skew del front end en la integraci\'on, por debajo de lo
+        que pide el presupuesto de vuelo.
+  \item En el laboratorio, medir la OSNR directamente y muestrear a dos
+        muestras por s\'imbolo en la tasa de dise\~no, para trazar la curva de
+        BER contra OSNR y compararla con la del \cref{cap:enlace}.
+  \item Modelar el apuntamiento y el acoplamiento a fibra, que son los
+        t\'erminos que deciden el margen del enlace.
+  \item Implementar la correcci\'on de errores en bloque.
+\end{itemize}

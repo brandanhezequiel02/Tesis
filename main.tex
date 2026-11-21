@@ -1,0 +1,65 @@
+%% =======================================================================
+%  TESIS — Proyecto Integrador II — Instituto Balseiro
+%  Receptor optico coherente DP-QPSK de 128 Gbps para enlaces LEO-GEO
+%
+%  ESTRUCTURA: calcada de la tesis de Reus Merlo (2026, mismo director).
+%  Cada capitulo abre con una seccion "Introduccion" y cierra con una
+%  seccion "Conclusiones". Los resultados NO van en un capitulo aparte:
+%  viven dentro del capitulo que los produjo.
+%
+%  COMO COMPILAR
+%    TeXworks: elegir "pdfLaTeX+MakeIndex+BibTeX" y correr DOS veces.
+%    Overleaf: subir la carpeta; el compilador por defecto ya funciona.
+% =======================================================================
+\documentclass[11pt,a4paper,twoside,openright]{book}
+
+\input{preambulo}
+
+
+
+\begin{document}
+
+%% ---------------- Preliminares ----------------
+\frontmatter
+\include{secciones/00-portada}
+\include{secciones/01-resumen}
+
+\cleardoublepage
+\tableofcontents
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listfigurename}
+\listoffigures
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\listtablename}
+\listoftables
+\cleardoublepage
+\include{secciones/02-acronimos}
+
+%% ---------------- Cuerpo ----------------
+\mainmatter
+\include{secciones/03-introduccion}
+\include{secciones/04-comunicaciones-coherentes}
+\include{secciones/05-canal-leogeo}
+\include{secciones/06-modelo-transceptor}
+\include{secciones/07-dsp}
+\include{secciones/08-analisis-enlace}
+\include{secciones/09-tolerancias}
+\include{secciones/10-validacion-experimental}
+\include{secciones/11-conclusiones}
+
+%% ---------------- Apendices ----------------
+\appendix
+\include{secciones/A-ruido-y-sensibilidad}
+%\include{secciones/B-parametros}
+
+%% ---------------- Bibliografia ----------------
+\backmatter
+\bibliographystyle{ieeetr}
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{\bibname}
+\bibliography{referencias}
+
+\end{document}

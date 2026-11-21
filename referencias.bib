@@ -1,0 +1,535 @@
+%% =======================================================================
+%  BIBLIOGRAFIA
+
+@book{agrawal2010,
+  author    = {Agrawal, Govind P.},
+  title     = {Fiber-Optic Communication Systems},
+  edition   = {4},
+  publisher = {John Wiley \& Sons},
+  address   = {Hoboken, NJ},
+  series    = {Wiley Series in Microwave and Optical Engineering},
+  year      = {2010},
+  isbn      = {978-0-470-50511-3},
+  annote    = {Figura de ruido de un amplificador optico y su relacion con el
+               factor de emision espontanea. Capitulo 7, Loss Management,
+               seccion 7.2.3 Amplifier Noise. Indice verificado contra el front
+               matter del editor, la pagina exacta no}
+}
+
+@book{mello2021,
+  author    = {Mello, Darli A. A. and Barbosa, Fabio A.},
+  title     = {Digital Coherent Optical Systems: Architecture and Algorithms},
+  publisher = {Springer},
+  year      = {2021},
+  series    = {Optical Networks},
+  doi       = {10.1007/978-3-030-66541-8},
+  annote      = {Referencia principal del modelo de la cadena y de los algoritmos de DSP}
+}
+
+@article{savory2010,
+  author  = {Savory, Seb J.},
+  title   = {Digital Coherent Optical Receivers: Algorithms and Subsystems},
+  journal = {IEEE Journal of Selected Topics in Quantum Electronics},
+  volume  = {16},
+  number  = {5},
+  pages   = {1164--1179},
+  year    = {2010}
+}
+
+@article{viterbi1983,
+  author  = {Viterbi, Andrew J. and Viterbi, Audrey M.},
+  title   = {Nonlinear Estimation of {PSK}-Modulated Carrier Phase with Application
+             to Burst Digital Transmission},
+  journal = {IEEE Transactions on Information Theory},
+  volume  = {29},
+  number  = {4},
+  pages   = {543--551},
+  year    = {1983}
+}
+
+@article{ip2007,
+  author  = {Ip, Ezra and Kahn, Joseph M.},
+  title   = {Digital Equalization of Chromatic Dispersion and Polarization Mode
+             Dispersion},
+  journal = {Journal of Lightwave Technology},
+  volume  = {25},
+  number  = {8},
+  pages   = {2033--2043},
+  year    = {2007}
+}
+
+@article{kikuchi2016,
+  author  = {Kikuchi, Kazuro},
+  title   = {Fundamentals of Coherent Optical Fiber Communications},
+  journal = {Journal of Lightwave Technology},
+  volume  = {34},
+  number  = {1},
+  pages   = {157--179},
+  year    = {2016}
+}
+
+@misc{itu_g975,
+  author = {{ITU-T}},
+  title  = {Recommendation {G.975.1}: Forward error correction for high
+            bit-rate {DWDM} submarine systems},
+  year   = {2004},
+  note   = {Aprobada el 22 de febrero de 2004, en vigor.},
+  annote   = {VERIFICADA contra el documento de la ITU. Aprobada el 22-feb-2004.
+              El valor 3,8e-3 NO esta tabulado: cae entre dos filas del
+              apendice~I.9, dos BCH(1020,988) entrelazados con 6,69\% de
+              overhead, que lista 4,0e-3 de entrada para 7,0e-14 de salida
+              y 3,5e-3 para 2,1e-14. Interpolando, 3,8e-3 da unos 4e-14.
+              OJO: con 3,8e-3 ningun esquema de la G.975.1 llega a 1e-15.
+              El I.3, que si lo alcanza, necesita 3,15e-3 a la entrada.}
+}
+
+@misc{oif_itla,
+  author = {{Optical Internetworking Forum}},
+  title  = {Integrable Tunable Laser Assembly Multi Source Agreement,
+            {OIF-ITLA-MSA-01.3}},
+  year   = {2015},
+  annote   = {SIN CITAR en el texto. Decidir si se cita o se saca del bib.}
+}
+
+@misc{sda_oct,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{Space Development Agency}},
+  title        = {Optical Communication Terminal {(OCT)} Standard, version 4.0.0},
+  year         = {2024},
+  howpublished = {\url{https://www.sda.mil/wp-content/uploads/2024/07/SDA_OCT_Standard_4.0.0_final-20240701.pdf}},
+  annote         = {Consultado en 2026. Especifica OOK-NRZ y codificacion
+                  Manchester, con un maximo de 2500~Mb/s de senalizacion
+                  optica. Grilla ITU-T G.694.1 de 100~GHz en banda C,
+                  1530--1565~nm, 44 canales. No menciona multiplexacion en
+                  polarizacion: la seccion 2.7 solo exige que el receptor
+                  acepte cualquier estado de polarizacion recibido}
+}
+
+@misc{sda_transport,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{Space Development Agency}},
+  title        = {Transport Layer},
+  year         = {2023},
+  howpublished = {\url{https://www.sda.mil/wp-content/uploads/2023/06/Transport-Layer_distro-A_FINAL.pdf}},
+  annote         = {Consultado en 2026. Constelacion de varios cientos de
+                  satelites a 1000~km de altura. Tranche~0 con 20 vehiculos y
+                  Tranche~1 con 126. Los OISL son el transporte principal y
+                  tienen que cumplir el estandar OCT vigente}
+}
+
+@misc{esa_estol,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{European Space Agency}},
+  title        = {{ESA} Specification for Terabit/sec Optical Links {(ESTOL)}},
+  howpublished = {\url{https://connectivity.esa.int/esa-specification-terabitsec-optical-links-estol}},
+  annote         = {Consultado en 2026. Busca extender los enlaces opticos mas
+                  alla de los 10~Gb/s actuales. La interfaz aerea incorpora
+                  requisitos del estandar OCT de la SDA porque ya hay
+                  productos comerciales desarrollados contra el}
+}
+
+@misc{starlink2024,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {Brashears, Travis},
+  title        = {{SpaceX} reveals {Starlink} laser capacity},
+  year         = {2024},
+  howpublished = {\url{https://www.advanced-television.com/2024/02/02/spacex-reveals-starlink-laser-capacity/}},
+  annote         = {Declaraciones de un ingeniero de enlaces opticos de SpaceX,
+                  reportadas el 2 de febrero de 2024. Unos 42~PB por dia sobre
+                  mas de 9000 enlaces laser instalados, con un maximo de
+                  200~Gb/s por enlace. SpaceX no publica hoja de datos ni
+                  esquema de modulacion, asi que en el texto se usa el valor
+                  conservador de ~100~Gb/s}
+}
+
+@misc{satsearch2025,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{satsearch}},
+  title        = {Laser communications systems for inter-satellite links in {LEO}},
+  year         = {2025},
+  howpublished = {\url{https://blog.satsearch.co/}},
+  annote         = {Relevamiento de terminales comerciales}
+}
+
+@article{scirep2022,
+  author  = {Walsh, Shane M. and Karpathakis, Skevos F. E. and McCann,
+             Ayden S. and Dix-Matthews, Benjamin P. and Frost, Alex M. and
+             Gozzard, David R. and Gravestock, Charles T. and Schediwy,
+             Sascha W.},
+  title   = {Demonstration of 100~{Gbps} coherent free-space optical
+             communications at {LEO} tracking rates},
+  journal = {Scientific Reports},
+  volume  = {12},
+  pages   = {18345},
+  year    = {2022},
+  doi     = {10.1038/s41598-022-22027-0},
+  annote    = {DP-QPSK a 27,95~GBd con un modulo coherente CFP2-DCO, 118,8~Gb/s
+             de tasa de linea y 100~Gb/s sostenidos. Enlace entre una azotea y
+             un dron a 120~m sobre el rio Swan, Perth, con velocidades
+             angulares de seguimiento LEO de unos 1,5~grados/s. Vuelos del 7 y
+             el 21 de abril de 2022. Demostracion en atmosfera, no en el
+             espacio}
+}
+
+@misc{mynaric_condor,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{Mynaric}},
+  title        = {{CONDOR Mk3} optical communications terminal},
+  howpublished = {\url{https://mynaric.com/products/space/condor-mk3/}},
+  annote         = {Consultado en 2026. Terminal comercial conforme al estandar
+                  OCT de la SDA para Tranche~0 y Tranche~1. Tasas de 0,313 a
+                  2,5~Gb/s, alcance mayor a 6500~km, banda de 1553 y 1536~nm.
+                  Las tasas variables de hasta 10~Gb/s figuran como
+                  prestacion futura}
+}
+
+@misc{nasa_katt,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{NASA}},
+  title        = {{Ka}-band {Test} {Terminal} results over the {TDRSS}
+                  225~{MHz} relay channel},
+  year         = {2017},
+  howpublished = {\url{https://ntrs.nasa.gov/api/citations/20170004117/downloads/20170004117.pdf}},
+  annote         = {Relevo RF LEO--GEO en banda Ka. Unos 700~Mb/s medidos sobre
+                  el canal de 225~MHz, con 16-APSK a 678~Mb/s y BER de 1e-9}
+}
+
+%% -----------------------------------------------------------------------
+%  ENLACES OPTICOS INTER-SATELITALES DEMOSTRADOS EN VUELO
+%  (fuentes de la figura de evolucion temporal, capitulo 1)
+%% -----------------------------------------------------------------------
+
+@inproceedings{tolkernielsen2002,
+  author    = {Tolker-Nielsen, T. and Oppenhauser, G.},
+  title     = {In-orbit test result of an operational optical intersatellite
+               link between {ARTEMIS} and {SPOT4}, {SILEX}},
+  booktitle = {Proc. SPIE 4635, Free-Space Laser Communication Technologies XIV},
+  pages     = {1--16},
+  year      = {2002},
+  doi       = {10.1117/12.464105},
+  annote      = {Primer enlace optico entre un satelite LEO y uno
+               geoestacionario. 50~Mb/s con deteccion directa y fotodiodos de
+               avalancha de silicio. Los terminales SILEX trabajan en la banda
+               de 800 a 850~nm}
+}
+
+@misc{esa_silex2001,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{European Space Agency}},
+  title        = {A world first: data transmission between {European}
+                  satellites using laser light},
+  year         = {2001},
+  howpublished = {\url{https://www.esa.int/Newsroom/Press_Releases/A_world_first_data_transmission_between_European_satellites_using_laser_light}},
+  annote         = {Comunicado del 22 de noviembre de 2001. El primer enlace
+                  SPOT-4--ARTEMIS se cerro la noche del 21 de noviembre de
+                  2001, a 50~Mb/s. Telescopio de 25~cm en los dos terminales}
+}
+
+@misc{esa_oicets2005,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{European Space Agency}},
+  title        = {Successful optical data relay link between {OICETS} and
+                  {Artemis}},
+  year         = {2005},
+  howpublished = {\url{https://www.esa.int/Applications/Connectivity_and_Secure_Communications/Successful_optical_data_relay_link_between_OICETS_and_Artemis}},
+  annote         = {Enlace del 9 de diciembre de 2005 a las 02:05~UTC. 50~Mb/s
+                  de KIRARI hacia ARTEMIS y 2~Mb/s en el sentido opuesto}
+}
+
+
+@misc{eoportal_artemis,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{eoPortal}},
+  title        = {{ARTEMIS} (Advanced Relay and Technology Mission Satellite)},
+  howpublished = {\url{https://www.eoportal.org/satellite-missions/artemis}},
+  annote         = {Consultado en 2026. Detalles de SILEX y del enlace con
+                  OICETS/Kirari (9-dic-2005)}
+}
+
+@inproceedings{smutny2009,
+  author    = {Smutny, B. and Kaempfner, H. and Muehlnikel, G. and others},
+  title     = {5.6~{Gbps} optical intersatellite communication link},
+  booktitle = {Proc. SPIE 7199, Free-Space Laser Communication Technologies XXI},
+  pages     = {719906},
+  year      = {2009},
+  doi       = {10.1117/12.812209},
+  annote      = {TerraSAR-X--NFIRE, LCT de Tesat: 5,625~Gb/s, homodino coherente
+               BPSK a 1064~nm. El titulo del paper redondea la tasa a
+               5,6~Gb/s}
+}
+
+@misc{tesat2018,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{Tesat-Spacecom}},
+  title        = {Tesat celebrates 10 years of laser communications in space},
+  year         = {2018},
+  howpublished = {\url{https://tesat.de/news/press/623-pi1286-tesat-celebrates-10-years-of-laser-communications-in-space}},
+  annote         = {Consultado en 2026. Fecha del primer enlace laser orbital
+                  estable entre TerraSAR-X y NFIRE: 21 de febrero de 2008}
+}
+
+@misc{esa_edrs,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{European Space Agency}},
+  title        = {{EDRS} --- European Data Relay System (SpaceDataHighway)},
+  howpublished = {\url{https://www.esa.int/Applications/Connectivity_and_Secure_Communications/EDRS}},
+  annote         = {Consultado en 2026. 1,8~Gb/s LEO--GEO, homodino coherente
+                  BPSK a 1064~nm. Primer enlace Alphasat~TDP-1--Sentinel-1A
+                  en nov.~2014; EDRS-A operativo desde 2016, EDRS-C desde 2019}
+}
+
+@misc{nasa_lcrd_illumat,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{NASA}},
+  title        = {{NASA}'s first two-way, end-to-end laser relay system
+                  ({LCRD} and {ILLUMA-T})},
+  year         = {2023},
+  howpublished = {\url{https://www.nasa.gov/technology/space-comms/nasas-space-station-laser-comm-terminal-achieves-first-link}},
+  annote         = {ILLUMA-T en la ISS (LEO) hacia LCRD en GEO, 1,2~Gb/s.
+                  Primer enlace el 5 de diciembre de 2023. La NASA lo reclama
+                  como su primer relevo laser bidireccional extremo a extremo,
+                  no como el primero del mundo. Mision completada en jul.~2024.
+                  Sin oscilador local: DPSK con interferometro de linea de
+                  retardo, no deteccion coherente}
+}
+
+@misc{nec_lucas2025,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{NEC Corporation} and {JAXA}},
+  title        = {World's first successful transmission of huge volume mission
+                  data using 1.5~{\textmu}m optical inter-satellite communication},
+  year         = {2025},
+  howpublished = {\url{https://www.nec.com/en/press/202501/global_20250123_01.html}},
+  annote         = {LUCAS: DAICHI-4 (ALOS-4) en LEO hacia el satelite de relevo
+                  optico en GEO, 1,8~Gb/s en banda de 1,5~um}
+}
+
+@article{chaudhry2021,
+  author  = {Chaudhry, Aizaz U. and Yanikomeroglu, Halim},
+  title   = {Laser Intersatellite Links in a {Starlink} Constellation:
+             A Classification and Analysis},
+  journal = {IEEE Vehicular Technology Magazine},
+  volume  = {16},
+  number  = {2},
+  pages   = {48--56},
+  year    = {2021},
+  annote    = {Clasificacion y analisis de la topologia de la malla optica de
+             Starlink. No aporta tasas operativas, que se toman de
+             starlink2024. SpaceX no publica el esquema de deteccion de sus
+             terminales, de modo que en la figura de evolucion los puntos
+             LEO--LEO quedan marcados como no publicados}
+}
+
+%% -----------------------------------------------------------------------
+%  COMPONENTES Y PLATAFORMA  (capitulo 3)
+%% -----------------------------------------------------------------------
+
+@inproceedings{edmunds2017,
+  author    = {J. Edmunds and J. Farzana and M. Kechagias and
+               L. Stampoulidis and E. Kehayas},
+  title     = {Mid-power {PM} booster and optical fiber pre-amplifier for
+               1.55~$\mu$m satellite laser communications},
+  booktitle = {International Conference on Space Optics --- {ICSO} 2016},
+  series    = {Proc. SPIE},
+  volume    = {10562},
+  pages     = {105621B},
+  year      = {2017},
+  doi       = {10.1117/12.2296132},
+  annote    = {Preamplificador de fibra validado por radiacion dentro del
+               programa ECI de la ESA. Figura de ruido post irradiacion de
+               4,57 a 4,68 dB en banda C tras 100 krad (GEO) y del orden de
+               4 dB tras 20 krad (LEO), medida con -40 dBm a la entrada.
+               Booster PM asociado: >19 dBm saturado tras 100 krad.}
+}
+
+@inproceedings{rahmlow2018,
+  author    = {Rahmlow, Thomas and Upton, Trey and Fredell, Markus and
+               Finnell, Travis and Washkevich, Spencer and Winchester, Keith
+               and Hoppock, Thomas and Johnson, Robert},
+  title     = {Ultra-narrow bandpass optical interference filters for deep
+               space optical communication},
+  booktitle = {Proc. SPIE 10524, Free-Space Laser Communication and
+               Atmospheric Propagation XXX},
+  pages     = {1052416},
+  year      = {2018},
+  doi       = {10.1117/12.2290753},
+  annote    = {Filtros pasabanda de interferencia multicapa, es
+               decir pelicula delgada, en diseno Fabry-Perot, para comunicacion
+               optica espacial bajo contrato NASA/JPL NNX17CP58P. El paper usa
+               el termino "flat-top multi-cavity" para el perfil plano con
+               flancos abruptos que aproxima la super-gaussiana de orden 4. El
+               titulo habla de 0,2 nm, pero la Figura 10 muestra datos medidos
+               de filtros de 1,0, 0,65 y 0,3 nm y la Figura 8 de 2,5 nm, de
+               modo que los 0,51 nm (64 GHz) de este trabajo caen dentro del
+               rango medido}
+}
+
+@book{vallado2013,
+  author    = {Vallado, David A.},
+  title     = {Fundamentals of Astrodynamics and Applications},
+  edition   = {4},
+  publisher = {Microcosm Press},
+  address   = {Hawthorne, CA},
+  year      = {2013},
+  annote    = {Modelo kepleriano de dos cuerpos y derivacion de la velocidad
+               radial y su derivada a partir de la posicion y la velocidad
+               relativas. Fuente de la ecuacion 3.7 del capitulo 3}
+}
+
+@incollection{carrascocasado2020,
+  author    = {Carrasco-Casado, Alberto and Mata-Calvo, Ramon},
+  title     = {Free-Space Optical Links for Space Communication Networks},
+  booktitle = {Springer Handbook of Optical Networks},
+  editor    = {Mukherjee, Biswanath and Tomkos, Ioannis and Tornatore, Massimo
+               and Winzer, Peter and Zhao, Yongli},
+  publisher = {Springer},
+  address   = {Cham},
+  pages     = {1057--1103},
+  year      = {2020},
+  doi       = {10.1007/978-3-030-16250-4\_34},
+  annote    = {Tabla 8.4: los dos terminales de SILEX, OPALE en ARTEMIS (GEO) y
+               PASTEL en SPOT-4 (LEO), usan telescopios de 250~mm. El LCT de
+               Alphasat usa 135~mm. Fuente del diametro del telescopio receptor
+               del capitulo 3, junto con esa_silex2001}
+}
+
+@inproceedings{gutlich2014,
+  author    = {G\"utlich, Bj\"orn and Meyer, Rolf and Philipp-May, Sabine and
+               Lutzer, Michael and Richter, Ines and Pagels-Kerp, Anke and
+               Bibus, Markus},
+  title     = {German Roadmap on Optical Communication in Space},
+  booktitle = {Proc. International Conference on Space Optical Systems and
+               Applications (ICSOS)},
+  address   = {Kobe, Japan},
+  year      = {2014},
+  note      = {Paper S3-4.},
+  annote    = {Las actas no tienen paginacion, de ahi el numero de paper en
+               note. Tabla I: el LCT de segunda generacion (LEO-GEO, de
+               Alphasat, Sentinel-1A/2A y EDRS) tiene telescopio de 135~mm,
+               1,8~Gb/s y distancia de enlace mayor a 45000~km. El de primera
+               generacion (TerraSAR-X--NFIRE) tiene 125~mm}
+}
+@misc{fujitsu_ftm7977,
+  author       = {{Fujitsu Optical Components}},
+  title        = {{FTM7977HQA}: {DP-QPSK} 100~{Gbps} {LiNbO$_3$} external modulator},
+  year         = {2011},
+  howpublished = {Hoja de datos del fabricante},
+  annote         = {Modulador usado en el banco de laboratorio de este trabajo.
+                  Mach-Zehnder de 32~GBd para DP-QPSK, con dos moduladores QPSK
+                  y un PBC integrados; ancho de banda optico 23~GHz a -3~dB;
+                  perdida de insercion maxima 14~dB; tension de manejo RF
+                  2$V_\pi$ = 7~Vpp maximo a 32~GBd; relacion de extincion
+                  minima 22~dB (MZI padre) y 20~dB (MZI hijos); retardo optico
+                  entre X e Y de -5,2 a -1,2~ps}
+}
+
+@article{tfln2022,
+  author  = {Wang, Xuanhao and Shang, Chenglin and Pan, An and Cheng,
+             Xingran and Gui, Tao and Yuan, Shuai and Gui, Chengcheng and
+             Zheng, Keshuang and Zhang, Peijie and Song, Xiaolu and Li,
+             Yanbo and Li, Liangchuan and Zeng, Cheng and Xia, Jinsong},
+  title   = {Thin-film lithium niobate dual-polarization {IQ} modulator on a
+             silicon substrate for single-carrier 1.6~{Tb/s} transmission},
+  journal = {APL Photonics},
+  volume  = {7},
+  number  = {7},
+  pages   = {076101},
+  year    = {2022},
+  annote    = {Autores completos verificados contra DOAJ. SIN CITAR en el texto.
+             P\'erdida de inserci\'on 12~dB por polarizaci\'on}
+}
+
+
+@inproceedings{microvib2018,
+  author    = {De Munter, Wouter and Delabie, Tjorven and Vandepitte, Dirk},
+  title     = {Characterization of reaction wheel micro-vibrations},
+  booktitle = {Proc. ISMA 2018, International Conference on Noise and
+               Vibration Engineering},
+  address   = {Leuven, Belgium},
+  pages     = {3511--3526},
+  year      = {2018},
+  annote      = {Autores y paginas verificados contra las actas de ISMA 2018. La banda
+                de caracterizacion que reporta el paper es de 10 a 2000~Hz,
+                limitada por la primera resonancia del montaje.}
+}
+
+@misc{nuphoton,
+  note         = {Consultado en noviembre de 2026.},
+  author       = {{Nuphoton Technologies}},
+  title        = {Space-qualified fiber amplifiers},
+  howpublished = {\url{https://nuphoton.com/space-qualified-fiber-amplifiers/}},
+  annote         = {Consultado en 2026. Potencias de salida desde fracciones de
+                  vatio hasta 10~W; modulo LEO de 5~W con $>$40~dB de ganancia;
+                  eficiencia de pared superior al 10\%}
+}
+
+@misc{ppcl500,
+  author       = {{Pure Photonics}},
+  title        = {{PPCL500} low-noise telecom-grade tunable laser module},
+  year         = {2020},
+  howpublished = {Hoja de datos, versi\'on D},
+  annote         = {Laser usado en el banco de laboratorio de este trabajo.
+                  Banda C sintonizable 191,50--196,25~THz; potencia de salida
+                  hasta 17~dBm; ancho de linea intrinseco 10~kHz tipico,
+                  15~kHz maximo; exactitud absoluta de frecuencia $\pm$1,5~GHz;
+                  RIN a 1~GHz de -140~dB/Hz a 13~dBm}
+}
+
+%% -----------------------------------------------------------------------
+%  SINCRONIZACION  (capitulo 5)
+%% -----------------------------------------------------------------------
+
+@article{franks1980,
+  author  = {Franks, Lewis E.},
+  title   = {Carrier and Bit Synchronization in Data Communication ---
+             A Tutorial Review},
+  journal = {IEEE Transactions on Communications},
+  volume  = {28},
+  number  = {8},
+  pages   = {1107--1121},
+  year    = {1980},
+  annote    = {Volumen, numero y paginas verificados contra dblp. Deriva la amplitud
+             del tono de reloj
+             que produce una no linealidad cuadratica y muestra que es
+             proporcional a la integral de G(f)G*(f-1/T): existe solo si el
+             espectro del pulso se solapa consigo mismo desplazado en la tasa
+             de simbolo, o sea solo con exceso de ancho de banda}
+}
+
+@article{gardner1986,
+  author  = {Gardner, Floyd M.},
+  title   = {A {BPSK/QPSK} Timing-Error Detector for Sampled Receivers},
+  journal = {IEEE Transactions on Communications},
+  volume  = {34},
+  number  = {5},
+  pages   = {423--429},
+  year    = {1986},
+  annote    = {Volumen, numero y paginas verificados. Paper original del detector usado en
+             la recuperacion de reloj. OJO: Floyd M. Gardner (este) no es
+             William A. Gardner, el de la teoria de ciclostacionariedad}
+}
+
+@book{haykin2014,
+  author    = {Haykin, Simon},
+  title     = {Adaptive Filter Theory},
+  edition   = {5},
+  publisher = {Pearson},
+  year      = {2014},
+  annote      = {Quinta edicion, Pearson 2014, verificada. El analisis de seguimiento del
+               LMS frente a un optimo variable en el tiempo ---error de
+               arrastre proporcional a 1/mu contra exceso de error
+               proporcional a mu--- es el que respalda el limite de rotacion
+               del SOP}
+}
+
+@article{portodasilva2016,
+  author  = {Porto da Silva, Edson and Zibar, Darko},
+  title   = {Widely Linear Equalization for {IQ} Imbalance and Skew Compensation
+             in Optical Coherent Receivers},
+  journal = {Journal of Lightwave Technology},
+  volume  = {34},
+  number  = {15},
+  pages   = {3577--3586},
+  year    = {2016},
+  doi     = {10.1109/JLT.2016.2577716}
+}

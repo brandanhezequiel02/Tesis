@@ -1,0 +1,266 @@
+% !TeX root = ../main.tex
+\chapter{Par\'ametros y c\'odigos}
+\label{ap:parametros}
+
+Este ap\'endice re\'une los par\'ametros con los que se corri\'o la cadena y el
+\'indice de los programas que produjeron cada resultado.
+
+\section{Par\'ametros de la simulaci\'on}
+\label{sec:ap-parametros}
+
+Los valores que siguen son los del punto de operaci\'on nominal. Cada barrido
+del \cref{cap:tolerancias} pisa \'unicamente el par\'ametro que barre y deja
+los dem\'as en estos valores, que es lo que permite sumar las penalidades
+medidas por separado.
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{llc}
+    \toprule
+    Par\'ametro & S\'imbolo & Valor \\
+    \midrule
+    Formato de modulaci\'on        & ---                & DP-QPSK \\
+    Tasa de s\'imbolo              & $\Rs$              & \SI{32}{\giga\baud} \\
+    Tasa binaria                   & $R_b$              & \SI{128}{\giga\bit\per\second} \\
+    Polarizaciones                 & $N_{\mathrm{pol}}$ & 2 \\
+    Muestras por s\'imbolo (simulaci\'on) & SpS         & 16 \\
+    Muestras por s\'imbolo (DSP)   & SpS$_{\mathrm{ADC}}$ & 2 \\
+    Secuencia                      & ---                & PRBS-15 por polarizaci\'on \\
+    S\'imbolos por corrida         & $N_{\mathrm{symb}}$ & \num{2e5} / \num{6e5} \\
+    Roll-off del RRC               & $\beta$            & 0,2 \\
+    Span del RRC                   & ---                & 200 s\'imbolos \\
+    Longitud de onda               & $\lambda$          & \SI{1550}{\nano\metre} \\
+    \bottomrule
+  \end{tabular}
+  \caption[Se\~nal y cadena de simulaci\'on]{%
+    Par\'ametros de la se\~nal y de la cadena de simulaci\'on. Los barridos
+    del \cref{cap:tolerancias} usan \num{2e5} s\'imbolos por punto y la
+    cadena completa del \cref{cap:enlace}, \num{6e5}.}
+  \label{tab:ap-senal}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{llc}
+    \toprule
+    Par\'ametro & S\'imbolo & Valor \\
+    \midrule
+    Potencia de l\'aser en el punto de operaci\'on & $\Pcw$ & \SI{12.5}{\dBm} \\
+    Potencia de l\'aser en los barridos            & $\Pcw$ & \SI{4.5}{\dBm} \\
+    Ancho de l\'inea por l\'aser                   & $\dnu$ & \SI{100}{\kilo\hertz} \\
+    Tensi\'on de media onda del MZM                & $V_\pi$ & \SI{2}{\volt} \\
+    Punto de polarizaci\'on                        & ---     & $-V_\pi$ (nulo) \\
+    Excursi\'on de la se\~nal el\'ectrica          & ---     & $\pm V_\pi$ \\
+    P\'erdida de inserci\'on del modulador DP      & $L_{\mathrm{DP}}$ & \SI{14}{\dB} \\
+    Ganancia del booster                           & $G_b$   & \SI{35}{\dB} \\
+    \bottomrule
+  \end{tabular}
+  \caption[Transmisor y l\'aser]{Par\'ametros del transmisor y del l\'aser.}
+  \label{tab:ap-tx}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{llc}
+    \toprule
+    Par\'ametro & S\'imbolo & Valor \\
+    \midrule
+    Distancia del enlace            & $d$                 & \SI{45000}{\kilo\metre} \\
+    Apertura transmisora            & $D_{tx}$            & \SI{135}{\milli\metre} \\
+    Apertura receptora              & $D_{rx}$            & \SI{250}{\milli\metre} \\
+    P\'erdida de apuntamiento       & $L_p$               & \SI{5}{\dB} \\
+    P\'erdida neta de trayecto      & ---                 & \SI{73.40}{\dB} \\
+    Ganancia del EDFA de recepci\'on & $G$                & \SI{25}{\dB} \\
+    Figura de ruido del EDFA        & NF                  & \SI{4.5}{\dB} \\
+    Ancho de banda del filtro \'optico & ---              & $2\Rs = \SI{64}{\giga\hertz}$ \\
+    Ancho de banda de referencia de OSNR & $B_{\mathrm{ref}}$ & \SI{12.5}{\giga\hertz} \\
+    \bottomrule
+  \end{tabular}
+  \caption[Canal y amplificaci\'on \'optica]{%
+    Par\'ametros del canal LEO--GEO y del pre-amplificador del receptor.}
+  \label{tab:ap-canal}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{llc}
+    \toprule
+    Par\'ametro & S\'imbolo & Valor \\
+    \midrule
+    R\'egimen de ruido                  & ---                 & limitado por ASE \\
+    Ancho de banda del TIA              & $B_{\mathrm{TIA}}$  & \SI{20}{\giga\hertz} \\
+    Ancho de banda del ADC              & $B_{\mathrm{ADC}}$  & \SI{33}{\giga\hertz} \\
+    Filtro de los dos                   & ---                 & Bessel de quinto orden \\
+    Resistencia de carga                & $R_L$               & \SI{50}{\ohm} \\
+    Temperatura                         & $T$                 & \SI{300}{\kelvin} \\
+    Figura de ruido del amplificador el\'ectrico & $F_n$      & \SI{3}{\dB} \\
+    \bottomrule
+  \end{tabular}
+  \caption[Front end y digitalizaci\'on]{%
+    Par\'ametros del receptor coherente y del ADC. Los dos anchos
+    de banda son los de los equipos del laboratorio.}
+  \label{tab:ap-rx}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{llc}
+    \toprule
+    Deterioro & S\'imbolo & Valor nominal \\
+    \midrule
+    Offset de frecuencia            & $\Df$                 & \SI{0}{\mega\hertz} \\
+    Tasa de chirp                   & $\dot f$              & 0 \\
+    \'Angulo inicial de mezcla      & $\theta_0$            & \SI{45}{\degree} \\
+    Deriva del SOP                  & $\dot\theta$          & 0 \\
+    Error de cuadratura             & $\phi$                & \SI{0}{\degree} \\
+    Skew entre carriles             & ---                   & \SI{0}{\pico\second} \\
+    Error de reloj                  & ---                   & \SI{0}{\ppm} \\
+    Fase de muestreo                & ---                   & 0 \\
+    \bottomrule
+  \end{tabular}
+  \caption[Deterioros inyectados en el punto nominal]{%
+    Valor de cada deterioro.}
+  \label{tab:ap-deterioros}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \begin{tabular}{llc}
+    \toprule
+    Bloque & Par\'ametro & Valor \\
+    \midrule
+    Recuperaci\'on de frecuencia & suavizado del espectro        & \SI{20}{\mega\hertz} \\
+                                 & m\'ascara alrededor de continua & $\pm\SI{150}{\mega\hertz}$ \\
+    Filtro adaptado              & roll-off y span               & 0,2 y 200 s\'imbolos \\
+    Recuperaci\'on de reloj      & ganancia proporcional $k_p$   & \num{e-3} \\
+                                 & ganancia integral $k_i$       & \num{e-7} \\
+                                 & ganancia del detector $K_d$   & 0,63 \\
+                                 & ancho de banda del lazo $B_L$ & \SI{5.8}{\mega\hertz} \\
+                                 & amortiguamiento $\zeta$       & 1,25 \\
+    Ecualizador                  & taps por rama                 & 7 \\
+                                 & s\'imbolos de entrenamiento $N_{\mathrm{train}}$ & 1000 \\
+                                 & paso de adaptaci\'on $\mu$    & 0,01 \\
+    Lazo de fase                 & ganancia proporcional $g_1$   & 0,02 \\
+                                 & ganancia integral $g_2$       & 0,025 \\
+    \bottomrule
+  \end{tabular}
+  \caption[Constantes del procesamiento digital]{%
+    Constantes de los bloques del DSP.}
+  \label{tab:ap-dsp}
+\end{table}
+
+\section{Programas}
+\label{sec:ap-codigos}
+
+El c\'odigo que acompa\~na a esta tesis est\'a en la carpeta \texttt{codigos},
+separado en tres partes: la cadena de simulaci\'on, el procesamiento digital y
+los programas del laboratorio. Las tablas que siguen dicen qu\'e hace cada
+archivo.
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \begin{tabular}{ll}
+    \toprule
+    Archivo & Qu\'e hace \\
+    \midrule
+    \texttt{Satelite2Final.m}        & cadena completa, barrida en potencia de l\'aser \\
+    \texttt{Satelite2FinalHW.m}      & lo mismo con los deterioros de hardware activos \\
+    \texttt{CanalSatelital.m}        & la cadena en una sola funci\'on, con semilla fija \\
+    \midrule
+    \texttt{Transmitter\_function.m} & secuencia de referencia del transmisor \\
+    \texttt{prbs\_funcion.m}         & secuencia pseudoaleatoria \\
+    \texttt{RRC.m}                   & filtro ra\'iz de coseno alzado \\
+    \texttt{PulseShaping.m}          & conformaci\'on de pulso \\
+    \texttt{Laser.m}                 & ruido de fase y ruido de intensidad \\
+    \texttt{IQModulator.m}           & modulador en fase y cuadratura \\
+    \texttt{DPModulator.m}           & modulador de doble polarizaci\'on \\
+    \texttt{GeometriaDopplerLEOGEO.m}& Doppler, chirp y error de reloj del pase \\
+    \texttt{DopplerEffect.m}         & offset de portadora y su deriva \\
+    \texttt{SatelliteRotation.m}     & rotaci\'on del estado de polarizaci\'on \\
+    \texttt{AddASENoise.m}           & ASE del pre-amplificador y c\'alculo de OSNR \\
+    \texttt{Hybrid90.m}              & h\'ibrido de \SI{90}{\degree} \\
+    \texttt{OpticalFrontEnd.m}       & fotodetecci\'on balanceada y TIA \\
+    \texttt{ADC.m}                   & ancho de banda del digitalizador y submuestreo \\
+    \texttt{LOFrequencyShift.m}      & offset de frecuencia del oscilador local \\
+    \texttt{InsertSkew.m}            & skew entre carriles \\
+    \texttt{Deskew.m}                & correcci\'on del skew \\
+    \texttt{Add\_IQ\_Imbalance.m}    & error de cuadratura del h\'ibrido \\
+    \texttt{InsertClockError.m}      & error de frecuencia y de fase del reloj \\
+    \bottomrule
+  \end{tabular}
+  \caption[Programas de la cadena de simulaci\'on]{%
+    Cadena de simulaci\'on. Los dos primeros son los programas principales; el
+    resto son los bloques que se llaman dentro de estos, en  orden.}
+  \label{tab:ap-codigos-cadena}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \begin{tabular}{ll}
+    \toprule
+    Archivo & Qu\'e hace \\
+    \midrule
+    \texttt{DSPreal.m}                   & la cadena de recepci\'on completa \\
+    \texttt{correrDSP.m}                 & la corre y devuelve EVM y BER por polarizaci\'on \\
+    \midrule
+    \texttt{GSOP.m}                      & ortogonalizaci\'on de Gram-Schmidt \\
+    \texttt{FRecovery.m}                 & estimador de frecuencia de cuarta potencia \\
+    \texttt{JointClockRecovery.m}        & recuperaci\'on de reloj de Gardner \\
+    \texttt{Synch\_Tx\_Symbol\_Dual\_Pol.m} & sincronizaci\'on y asignaci\'on de polarizaciones \\
+    \texttt{Pol\_Demux\_DDLMS.m}         & ecualizador adaptativo con lazo de fase \\
+    \texttt{DDLMS\_propio.m}             & el mismo ecualizador, implementaci\'on propia \\
+    \texttt{Synch\_Tx\_Symbol\_1sps.m}   & alineaci\'on final antes del conteo \\
+    \texttt{Decision.m}                  & decisi\'on dura \\
+    \texttt{ErrorCounting.m}             & tasa de error de bit y de s\'imbolo \\
+    \bottomrule
+  \end{tabular}
+  \caption[Programas del procesamiento digital]{%
+    Procesamiento digital. \texttt{DSPreal} llama a los dem\'as en el orden del
+    \cref{cap:dsp}.}
+  \label{tab:ap-codigos-dsp}
+\end{table}
+
+\begin{table}[htbp]
+  \centering
+  \small
+  \begin{tabular}{ll}
+    \toprule
+    Archivo & Qu\'e hace \\
+    \midrule
+    \texttt{Encender\_Laseres.m}        & identifica, configura y enciende los dos l\'aseres \\
+    \texttt{Bias\_Control.m}            & punto de polarizaci\'on del modulador \\
+    \texttt{PPG\_cargar\_datos.m}       & carga las PRBS en el generador de patrones \\
+    \midrule
+    \texttt{Grilla\_Doppler.m}          & grilla de offsets de cada tasa \\
+    \texttt{FOE\_Estimador.m}           & offset de frecuencia de una captura \\
+    \texttt{Calibrar\_Cero\_FOE.m}      & anula el residuo entre los dos l\'aseres \\
+    \texttt{BarridoDoppler\_Adquisicion.m} & recorre la grilla y guarda las capturas \\
+    \texttt{Capturar\_Waveform.m}       & adquisici\'on con reintentos \\
+    \texttt{MATLAB\_Scope\_Tek\_DOP\_4channels.m} & lectura de los cuatro canales \\
+    \midrule
+    \texttt{Procesar\_Barrido.m}        & post-proceso del barrido y ubicaci\'on del quiebre \\
+    \texttt{MAIN\_procesar\_capturas.m} & desempe\~no en las tres tasas \\
+    \bottomrule
+  \end{tabular}
+  \caption[Programas del laboratorio]{%
+    Laboratorio. Los tres primeros preparan la medici\'on, los seis del medio
+    hacen el barrido de offset Doppler y los dos \'ultimos procesan las
+    capturas con el mismo DSP de la simulaci\'on.}
+  \label{tab:ap-codigos-lab}
+\end{table}
+
+\section{C\'omo reproducir los resultados}
+\label{sec:ap-reproducir}
+
+Para la simulaci\'on alcanza con agregar las tres carpetas al camino de
+b\'usqueda de MATLAB y correr \texttt{Satelite2Final}, que barre la potencia
+del l\'aser y devuelve EVM y BER contra OSNR. Con \texttt{Satelite2FinalHW} se
+obtiene la misma curva con los deterioros de vuelo. 
+
+Para el laboratorio el orden es: encender y sintonizar los l\'aseres, ajustar
+el punto de polarizaci\'on del modulador, cargar las secuencias en el generador
+y poner el generador y el oscilosc\'opio en la tasa que se va a medir. Con eso
+listo, \texttt{BarridoDoppler\_Adquisicion} hace el barrido y
+\texttt{Procesar\_Barrido} lo procesa.

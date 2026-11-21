@@ -1,0 +1,196 @@
+% =======================================================================
+%  Esquema del banco de medicion coherente DP-QPSK
+%  Reemplaza el PNG lab_setup_1.png por una version vectorial editable.
+%
+%  Cambios respecto del dibujo anterior:
+%    - el rotulo de las fuentes es "Fuentes DC bias" a secas
+%    - se saco la flecha de las fuentes DC al driver
+%    - la rama del 5 % del tap pasa por un detector InGaAs antes del
+%      osciloscopio de control de bias
+%    - se agrego la linea de trigger del generador de PRBS al ADC
+%
+%  Compilar:  pdflatex lab_setup_1.tex
+% =======================================================================
+\documentclass[border=6pt]{standalone}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish,es-noshorthands]{babel}
+\usepackage{lmodern}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning, calc, fit, backgrounds}
+
+\definecolor{cOpt}{RGB}{214,137,16}      % camino optico
+\definecolor{cEle}{RGB}{26,49,77}        % camino electrico
+\definecolor{cBorde}{RGB}{188,196,206}
+\definecolor{cRelleno}{RGB}{246,248,251}
+\definecolor{cPant}{RGB}{23,36,54}
+\definecolor{cTrazo}{RGB}{26,49,77}
+\definecolor{cAcento}{RGB}{56,129,176}
+
+\begin{document}
+\begin{tikzpicture}[
+  x=0.92cm, y=0.92cm,
+  font=\sffamily\small,
+  caja/.style={draw=cBorde, fill=cRelleno, rounded corners=3pt,
+               minimum width=2.05cm, minimum height=1.45cm, line width=0.8pt},
+  rotulo/.style={font=\sffamily\small, align=center, text=cTrazo},
+  opt/.style={draw=cOpt, line width=1.5pt, -{Stealth[length=3mm,width=2mm]}},
+  ele/.style={draw=cEle, line width=1.2pt, -{Stealth[length=3mm,width=2mm]}},
+  trig/.style={draw=cEle, line width=1.0pt, dash pattern=on 4pt off 2.5pt,
+               -{Stealth[length=3mm,width=2mm]}},
+  pant/.style={draw=cTrazo, fill=cPant, line width=0.7pt, rounded corners=1pt},
+]
+
+%% ---------------------------------------------------------------- nodos
+\node[caja] (ppg)  at ( 0.0,  0.0) {};
+\node[caja] (drv)  at ( 3.0,  0.0) {};
+\node[caja] (mod)  at ( 6.0,  0.0) {};
+\node[caja] (tap)  at ( 9.0,  0.0) {};
+\node[caja, minimum width=2.6cm] (fe) at (12.2, 0.0) {};
+\node[caja] (adc)  at (15.4,  0.0) {};
+\node[caja] (pc)   at (18.4,  0.0) {};
+
+\node[caja] (ltx)  at ( 6.0,  3.3) {};
+\node[caja] (llo)  at (12.2,  3.3) {};
+
+\node[caja] (det)  at ( 9.0, -2.7) {};
+\node[caja] (osc)  at ( 9.0, -5.3) {};
+\node[caja] (dc)   at ( 5.2, -5.3) {};
+
+%% ------------------------------------------------------------- iconos
+% generador de patrones: pantalla con onda cuadrada y cuatro salidas
+\draw[pant] ($(ppg)+(-0.62,-0.18)$) rectangle ($(ppg)+(0.12,0.42)$);
+\draw[cAcento, line width=0.8pt]
+  ($(ppg)+(-0.54,0.02)$) -- ++(0.14,0) -- ++(0,0.26) -- ++(0.16,0)
+  -- ++(0,-0.26) -- ++(0.14,0) -- ++(0,0.26) -- ++(0.16,0) -- ++(0,-0.26) -- ++(0.1,0);
+\foreach \k in {0,1,2,3}{
+  \draw[cTrazo, line width=0.6pt, fill=white]
+    ($(ppg)+(0.62,0.42-0.24*\k)$) circle (0.07);
+}
+\draw[cTrazo, line width=0.6pt] ($(ppg)+(-0.5,-0.42)$) -- ++(0.55,0);
+
+% drivers: triangulo
+\draw[cTrazo, line width=0.9pt, fill=white]
+  ($(drv)+(-0.55,-0.6)$) -- ($(drv)+(-0.55,0.6)$) -- ($(drv)+(0.65,0)$) -- cycle;
+
+% modulador: dos brazos Mach-Zehnder
+\draw[cAcento, line width=0.9pt]
+  ($(mod)+(-0.7,0)$) -- ++(0.22,0.42) -- ++(0.96,0) -- ++(0.22,-0.42)
+  -- ++(-0.22,-0.42) -- ++(-0.96,0) -- cycle;
+\draw[cTrazo, line width=2pt] ($(mod)+(-0.28,0.56)$) -- ++(0.56,0);
+\draw[cTrazo, line width=2pt] ($(mod)+(-0.28,-0.56)$) -- ++(0.56,0);
+
+% tap: acoplador
+\draw[cTrazo, line width=0.8pt, fill=white, rounded corners=1.5pt]
+  ($(tap)+(-0.22,-0.2)$) rectangle ($(tap)+(0.22,0.2)$);
+\node[font=\sffamily\tiny, text=gray] at ($(tap)+(0.66,0.42)$) {95\,\%};
+\node[font=\sffamily\tiny, text=gray] at ($(tap)+(0.5,-0.45)$) {5\,\%};
+
+% front end: hibrido de 90 grados y balanceados
+\draw[cAcento, line width=0.8pt, fill=white]
+  ($(fe)+(-1.05,-0.55)$) rectangle ($(fe)+(-0.78,0.55)$);
+\foreach \s in {1,-1}{
+  \draw[cAcento, line width=0.7pt, fill=white]
+    ($(fe)+(-0.35,0.42*\s-0.14)$) rectangle ($(fe)+(0.25,0.42*\s+0.2)$);
+  \node[font=\sffamily\tiny, text=cAcento] at ($(fe)+(-0.05,0.42*\s+0.03)$) {$90^\circ$};
+  \draw[cTrazo, line width=0.8pt, fill=cTrazo]
+    ($(fe)+(0.5,0.42*\s+0.2)$) -- ($(fe)+(0.5,0.42*\s-0.14)$)
+    -- ($(fe)+(0.82,0.42*\s+0.03)$) -- cycle;
+  \draw[cOpt, line width=0.7pt] ($(fe)+(-0.78,0.42*\s+0.03)$) -- ($(fe)+(-0.35,0.42*\s+0.03)$);
+  \draw[cTrazo, line width=0.7pt] ($(fe)+(0.82,0.42*\s+0.03)$) -- ($(fe)+(1.2,0.42*\s+0.03)$);
+}
+
+% laseres
+\foreach \n in {ltx,llo}{
+  \draw[cTrazo, line width=0.8pt, fill=white]
+    ($(\n)+(-0.6,-0.4)$) rectangle ($(\n)+(-0.05,0.4)$);
+  \fill[cPant] ($(\n)+(-0.48,-0.24)$) rectangle ($(\n)+(-0.17,0.24)$);
+  \fill[cOpt, opacity=0.35] ($(\n)+(-0.05,0)$) -- ($(\n)+(0.7,0.3)$) -- ($(\n)+(0.7,-0.3)$) -- cycle;
+  \draw[cOpt, line width=0.9pt] ($(\n)+(-0.05,0)$) -- ($(\n)+(0.7,0)$);
+}
+
+% detector InGaAs: fotodiodo
+\draw[cTrazo, line width=0.9pt] ($(det)+(-0.45,0.45)$) -- ($(det)+(-0.45,-0.45)$);
+\draw[cTrazo, line width=0.9pt, fill=cTrazo]
+  ($(det)+(-0.45,0.34)$) -- ($(det)+(-0.45,-0.34)$) -- ($(det)+(0.12,0)$) -- cycle;
+\draw[cTrazo, line width=0.9pt] ($(det)+(0.12,0.45)$) -- ($(det)+(0.12,-0.45)$);
+\draw[cTrazo, line width=0.8pt] ($(det)+(0.12,0)$) -- ($(det)+(0.6,0)$);
+
+% osciloscopios y PC: pantallas
+\foreach \n/\dx in {osc/0, adc/0}{
+  \draw[pant] ($(\n)+(-0.6,-0.42)$) rectangle ($(\n)+(0.45,0.42)$);
+}
+\draw[cAcento, line width=0.8pt]
+  plot[domain=-0.5:0.35, samples=40, smooth]
+  (\x+9.0, {0.18*sin(deg((\x+0.5)*9))-5.3});
+\foreach \k in {0,1,2}{
+  \draw[cTrazo, line width=0.6pt, fill=white] ($(osc)+(0.68,0.3-0.3*\k)$) circle (0.08);
+  \draw[cTrazo, line width=0.6pt, fill=white] ($(adc)+(0.68,0.3-0.3*\k)$) circle (0.08);
+  \draw[cTrazo, line width=0.6pt, fill=white] ($(adc)+(-0.78,0.3-0.3*\k)$) circle (0.08);
+}
+\foreach \k/\c in {0/cAcento, 1/cOpt}{
+  \draw[\c, line width=0.7pt]
+    plot[domain=-0.5:0.35, samples=40, smooth]
+    (\x+15.4, {0.13*sin(deg((\x+0.5)*9+\k*90))+0.12-0.24*\k});
+}
+
+% PC
+\draw[pant] ($(pc)+(-0.6,-0.24)$) rectangle ($(pc)+(0.6,0.5)$);
+\foreach \a/\b in {-0.28/0.34, 0.28/0.34, -0.28/-0.06, 0.28/-0.06}{
+  \fill[cAcento] ($(pc)+(\a,\b)$) circle (0.08);
+}
+\draw[cTrazo, line width=0.9pt] ($(pc)+(0,-0.24)$) -- ++(0,-0.2);
+\draw[cTrazo, line width=0.9pt] ($(pc)+(-0.3,-0.44)$) -- ++(0.6,0);
+
+% fuentes DC
+\draw[pant] ($(dc)+(-0.6,0.06)$) rectangle ($(dc)+(0.12,0.46)$);
+\foreach \k in {0,1,2}{
+  \draw[cAcento, line width=1.1pt] ($(dc)+(-0.5+0.2*\k,0.26)$) -- ++(0.12,0);
+}
+\draw[cTrazo, line width=0.7pt, fill=white] ($(dc)+(0.42,0.26)$) circle (0.2);
+\draw[cTrazo, line width=0.7pt] ($(dc)+(0.42,0.26)$) -- ++(0,0.15);
+\foreach \k/\c in {0/red, 1/cTrazo, 2/red, 3/cTrazo}{
+  \draw[\c, line width=0.7pt, fill=white] ($(dc)+(-0.48+0.32*\k,-0.4)$) circle (0.11);
+}
+
+%% ------------------------------------------------------------- enlaces
+\draw[ele] (ppg) -- (drv);
+\draw[ele] (drv) -- (mod);
+\draw[opt] (mod) -- (tap);
+\draw[opt] (tap) -- (fe);
+\draw[ele] (fe)  -- (adc);
+\draw[ele] (adc) -- (pc);
+
+\draw[opt] (ltx) -- (mod);
+\draw[opt] (llo) -- (fe);
+
+% rama del 5 %: tap -> detector -> osciloscopio -> fuentes DC -> modulador
+\draw[opt] (tap) -- (det);
+\draw[ele] (det) -- (osc);
+\draw[ele] (osc) -- (dc);
+\draw[ele] (dc.north) -- ++(0,1.15) -| (mod.south);
+
+% trigger del generador de patrones al ADC
+\draw[trig] (ppg.west) -- ++(-1.0,0) -- ++(0,-7.9) -- (17.15,-7.9)
+            -- (17.15,-0.40) -- ($(adc.east)+(0,-0.40)$);
+\node[font=\sffamily\footnotesize, text=cEle, fill=white, inner sep=2pt]
+  at (3.4,-7.9) {trigger de patr\'on};
+
+%% ------------------------------------------------------------- rotulos
+\node[rotulo, below=0.30 of ppg] {Generador de PRBS};
+\node[rotulo, below=0.30 of drv] {Driver RF};
+\node[rotulo, below=0.30 of mod] {Modulador DP-IQ};
+\node[rotulo, below=0.30 of tap] {Tap 95/5};
+\node[rotulo, below=0.30 of fe]  {Receptor coherente};
+\node[rotulo, below=0.30 of adc] {Osciloscopio\\de tiempo real\\(4 canales)};
+\node[rotulo, below=0.30 of pc]  {DSP offline};
+
+\node[rotulo, above=0.30 of ltx] {L\'aser Tx\\PPCL500};
+\node[rotulo, above=0.30 of llo] {L\'aser LO\\PPCL500};
+
+\node[rotulo, right=0.30 of det] {Detector InGaAs};
+\node[rotulo, below=0.30 of osc] {Osciloscopio\\de bias};
+\node[rotulo, below=0.30 of dc]  {Fuentes DC bias};
+
+\end{tikzpicture}
+\end{document}

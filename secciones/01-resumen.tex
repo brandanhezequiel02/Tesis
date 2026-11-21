@@ -1,0 +1,112 @@
+% !TeX root = ../main.tex
+%% =======================================================================
+%  RESUMEN + ABSTRACT
+
+
+\chapter*{Resumen}
+\addcontentsline{toc}{chapter}{Resumen}
+\markboth{Resumen}{Resumen}
+
+Hay un amplio consenso en que las comunicaciones \'opticas intersatelitales
+representan una tecnolog\'ia clave para las futuras redes espaciales de alta
+capacidad. En particular, los enlaces entre sat\'elites de \'orbita baja (LEO)
+y geoestacionaria (GEO) ofrecen una alternativa para transmitir datos desde
+constelaciones LEO hacia estaciones terrestres, reduciendo la dependencia de la
+visibilidad directa entre los sat\'elites y la Tierra. Sin embargo, las tasas
+de transmisi\'on de los enlaces \'opticos LEO--GEO actualmente operativos
+permanecen en torno a \SI{1.8}{\giga\bit\per\second}, mientras que las
+comunicaciones entre sat\'elites LEO ya alcanzan aproximadamente
+\SI{100}{\giga\bit\per\second}. Esta diferencia motiva el desarrollo de
+sistemas LEO--GEO de mayor capacidad, basados en t\'ecnicas avanzadas de
+modulaci\'on, multiplexaci\'on en polarizaci\'on y recepci\'on coherente con
+procesamiento digital de se\~nales.
+
+Se diseñ\'o y verific\'o mediante simulaciones numéricas e implementación experimental un receptor \'optico
+coherente con modulaci\'on QPSK en doble polarizaci\'on (DP-QPSK) de \SI{128}{\giga\bit\per\second} (\SI{32}{\giga\baud}) para un enlace LEO--GEO a
+\SI{1550}{\nano\metre}. Se model\'o la cadena completa, con el transmisor, el
+canal satelital con Doppler y rotaci\'on de polarizaci\'on, y el receptor
+coherente. Se implementaron los algoritmos del DSP para la
+ortogonalizaci\'on, la recuperaci\'on de frecuencia y de reloj, la ecualizaci\'on
+adaptativa MIMO $2\times2$ y la recuperaci\'on de fase.
+Se mont\'o la cadena en el laboratorio y se verific\'o el correcto
+funcionamiento del DSP para tres tasas de transmisi\'on:
+\SI{12.5}{\giga\baud}, \SI{25}{\giga\baud} y \SI{32}{\giga\baud}.
+
+El receptor cumple los requisitos del enlace. Para la OSNR objetivo y valores
+realistas de los componentes, el balance de potencia cierra con \SI{3.4}{\dB}
+de margen. La tolerancia al desplazamiento de frecuencia por efecto Doppler
+sigue la relaci\'on $\abs{\Df} < \Rs/4$, verificada experimentalmente en las tres
+tasas. A la tasa de dise\~no equivale a \SI{8.0}{\giga\hertz} de tolerancia, contra los 
+\SI{6.0}{\giga\hertz} de requisito que impone el enlace. La BER medida en el laboratorio a
+esta tasa es de \num{1.2e-3}, por debajo del umbral HD-FEC. Incluyendo la
+penalidad de implementaci\'on del receptor y los deterioros esperados en vuelo,
+el umbral se alcanza con una OSNR de \SI{13.6}{\dB}. Frente a los dem\'as
+deterioros del canal, la rotaci\'on de polarizaci\'on, el chirp Doppler y el
+ancho de l\'inea de los l\'aseres, las tolerancias medidas del receptor superan
+entre uno y diez \'ordenes de magnitud los valores que el enlace presenta.
+
+La arquitectura propuesta resulta entonces viable para enlaces \'opticos
+LEO--GEO de alta capacidad. El margen del enlace no queda limitado por el
+procesamiento digital sino por el balance de potencia y el apuntamiento.
+
+\vspace{1.5em}
+\noindent\textbf{Palabras clave:}
+\textsc{comunicaciones \'opticas coherentes, dp-qpsk, enlaces intersatelitales,
+procesamiento digital de se\~nales, efecto doppler}
+
+\cleardoublepage
+
+\chapter*{Abstract}
+\addcontentsline{toc}{chapter}{Abstract}
+\markboth{Abstract}{Abstract}
+
+\selectlanguage{english}
+\sisetup{output-decimal-marker = {.}}
+There is broad agreement that optical inter-satellite links are a key
+technology for future high-capacity space networks. In particular, links
+between low Earth orbit (LEO) and geostationary orbit (GEO) satellites offer a
+way to relay data from LEO constellations to ground stations, reducing the
+dependence on direct visibility between the satellites and the Earth. However,
+the transmission rates of the LEO--GEO optical links currently in operation
+remain around \SI{1.8}{\giga\bit\per\second}, while communications between LEO
+satellites already reach about \SI{100}{\giga\bit\per\second}. This gap
+motivates the development of higher-capacity LEO--GEO systems based on advanced
+modulation, polarization multiplexing and coherent reception with digital
+signal processing.
+
+A coherent optical receiver using dual-polarization quadrature phase-shift
+keying (DP-QPSK) at \SI{128}{\giga\bit\per\second} (\SI{32}{\giga\baud}) for a
+LEO--GEO link at \SI{1550}{\nano\metre} was designed and verified through. The
+complete chain was modelled, including the transmitter, the satellite channel
+with Doppler and polarization rotation, and the coherent receiver. The DSP
+algorithms were implemented for orthogonalization, frequency and clock
+recovery, adaptive $2\times2$ MIMO equalization and carrier phase recovery. The
+chain was built in the laboratory and the DSP was verified at three symbol
+rates, \SI{12.5}{\giga\baud}, \SI{25}{\giga\baud} and \SI{32}{\giga\baud}.
+
+The receiver meets the link requirements. For the target OSNR and realistic
+component parameters, the power budget closes with \SI{3.4}{\dB} of margin. The
+tolerance to Doppler frequency offset follows $\abs{\Df} < \Rs/4$, verified
+experimentally at the three symbol rates. At the design rate this limit amounts
+to \SI{8.0}{\giga\hertz}, against the \SI{6.0}{\giga\hertz} required by the
+link. The BER measured in the laboratory at that rate is \num{1.2e-3}, below
+the HD-FEC threshold. Including the implementation penalty of the receiver and
+the impairments expected in flight, that threshold is met at an OSNR of
+\SI{13.6}{\dB}. For the remaining channel impairments, polarization rotation,
+Doppler chirp and laser linewidth, the measured tolerances of the receiver
+exceed the values imposed by the link by one to ten orders of magnitude.
+
+The proposed architecture is therefore viable for high-capacity LEO--GEO
+optical links. The link margin is set not by the digital signal processing but
+by the power budget and the pointing accuracy.
+
+\vspace{1.5em}
+\noindent\textbf{Keywords:}
+\textsc{coherent optical communications, dp-qpsk, inter-satellite links, digital
+signal processing, doppler effect}
+
+\sisetup{output-decimal-marker = {,}}
+\selectlanguage{spanish}
+
+
+\cleardoublepage

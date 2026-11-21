@@ -1,0 +1,33 @@
+# ===== Artefactos de compilacion de LaTeX =====
+# El main.pdf NO se ignora, se sube a proposito.
+# Los .pdf de figuras/ tampoco, porque main.tex los incluye.
+*.aux
+*.bbl
+*.blg
+*.bcf
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+
+# ===== Autosaves y copias de respaldo =====
+*.asv
+*.bak
+*~
+*.tex.backup
+
+# ===== Basura de Windows y OneDrive =====
+Thumbs.db
+desktop.ini
+*.lnk
